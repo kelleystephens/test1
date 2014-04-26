@@ -4,26 +4,36 @@
   $(document).ready(init);
 
   function init(){
-    $('#flip').click(flip);
+    $('#flip').click(randomNum);
   }
 
-  var hcount = 0;
-  var tcount = 0;
+  function randomNum(){
+    var flip = Math.floor(Math.random() * 2) + 1;
+    count(flip);
+  }
 
-  function flip(){
-    var x = Math.floor(Math.random() * 2) +1;
+  var htotal = 0;
+  var ttotal = 0;
 
-    if(x === 1){
-      hcount += 1;
-    } else{
-      tcount += 1;
+
+  function count(num){
+    if(num === 1){
+      $('#hcount').text(htotal += 1);
+    }else{
+      $('#tcount').text(ttotal += 1);
     }
-
-    $('#hcount').text(hcount);
-    $('#tcount').text(tcount);
-
+    getPercent();
   }
 
+  var totalFlips = 0;
+
+  function getPercent(){
+    totalFlips++;
+      var hper = (htotal/totalFlips).toFixed(2);
+      var tper = (ttotal/totalFlips).toFixed(2);
+      $('#hpercent').text(hper + '%');
+      $('#tpercent').text(tper + '%');
+  }
 
 
 })();
